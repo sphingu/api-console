@@ -467,6 +467,7 @@
 
             if (context.bodyContent) {
               request.header('Content-Type', context.bodyContent.selected);
+              request.header('api-version',RAML.Client.apiVersion);
               request.data(context.bodyContent.data());
             }
 
@@ -496,7 +497,7 @@
               authStrategy.authenticate().then(function(token) {
                 token.sign(request);
                 $scope.requestOptions = request.toOptions();
-                jQuery.ajax(request.toOptions()).then(
+                jQuery.ajax(jQuery.extend(request.toOptions(),{'xhrFields':{'withCredentials':true}})).then(
                   function(data, textStatus, jqXhr) { handleResponse(jqXhr); },
                   function(jqXhr) { handleResponse(jqXhr); }
                 );

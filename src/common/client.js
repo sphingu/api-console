@@ -2,10 +2,12 @@
 
 (function() {
   var Client = function(configuration) {
+
     this.baseUri = configuration.getBaseUri();
   };
 
   function createConfiguration(parsed) {
+    RAML.Client.apiVersion = parsed.version;
     var config = {
       baseUriParameters: {}
     };
