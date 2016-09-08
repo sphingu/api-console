@@ -8,6 +8,8 @@
     "LICENSE"
   ],
   "scripts": {
+    "serve": "http-server ./dist -p 9000",
+    "start": "grunt build&&npm run serve",
     "grunt": "grunt",
     "test": "grunt regression"
   },
